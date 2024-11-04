@@ -69,6 +69,20 @@ class AnalyticsMetricsOverTimeResponseContext implements ModelInterface, \JsonSe
     const METRIC_START = 'start';
     const METRIC_END = 'end';
     const METRIC_IMPRESSION = 'impression';
+    const METRIC_CCV_AVERAGE = 'ccv-average';
+    const METRIC_CCV_PEAK = 'ccv-peak';
+    const METRIC_UNIQUE_CCV_AVERAGE = 'unique-ccv-average';
+    const METRIC_UNIQUE_CCV_PEAK = 'unique-ccv-peak';
+    const METRIC_VIEW_3 = 'view-3';
+    const METRIC_VIEW_5 = 'view-5';
+    const METRIC_VIEW_10 = 'view-10';
+    const METRIC_VIEW_30 = 'view-30';
+    const METRIC_UNIQUE_VIEW = 'unique-view';
+    const METRIC_UNIQUE_VIEW_3 = 'unique-view-3';
+    const METRIC_UNIQUE_VIEW_5 = 'unique-view-5';
+    const METRIC_UNIQUE_VIEW_10 = 'unique-view-10';
+    const METRIC_UNIQUE_VIEW_30 = 'unique-view-30';
+    const INTERVAL_MINUTE = 'minute';
     const INTERVAL_HOUR = 'hour';
     const INTERVAL_DAY = 'day';
 
@@ -85,6 +99,19 @@ class AnalyticsMetricsOverTimeResponseContext implements ModelInterface, \JsonSe
             self::METRIC_START,
             self::METRIC_END,
             self::METRIC_IMPRESSION,
+            self::METRIC_CCV_AVERAGE,
+            self::METRIC_CCV_PEAK,
+            self::METRIC_UNIQUE_CCV_AVERAGE,
+            self::METRIC_UNIQUE_CCV_PEAK,
+            self::METRIC_VIEW_3,
+            self::METRIC_VIEW_5,
+            self::METRIC_VIEW_10,
+            self::METRIC_VIEW_30,
+            self::METRIC_UNIQUE_VIEW,
+            self::METRIC_UNIQUE_VIEW_3,
+            self::METRIC_UNIQUE_VIEW_5,
+            self::METRIC_UNIQUE_VIEW_10,
+            self::METRIC_UNIQUE_VIEW_30,
         ];
     }
 
@@ -96,6 +123,7 @@ class AnalyticsMetricsOverTimeResponseContext implements ModelInterface, \JsonSe
     public function getIntervalAllowableValues()
     {
         return [
+            self::INTERVAL_MINUTE,
             self::INTERVAL_HOUR,
             self::INTERVAL_DAY,
         ];
@@ -176,7 +204,7 @@ class AnalyticsMetricsOverTimeResponseContext implements ModelInterface, \JsonSe
     /**
      * Sets metric
      *
-     * @param string|null $metric Returns the metric you selected.
+     * @param string|null $metric Returns the metric and relevant parameters you selected.
      *
      * @return self
      */

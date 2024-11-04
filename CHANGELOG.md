@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.4.6] - 2024-11-04
+- Analytics updates (ccv, views, ...)
+
 ## [1.4.5] - 2024-10-21
 - Add summary feature
 
