@@ -38,7 +38,8 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
                 'deviceType' => 'string[]',
                 'operatingSystem' => 'string[]',
                 'browser' => 'string[]',
-                'tag' => 'string'
+                'tag' => 'string',
+                'referrer' => 'string[]'
             ],
             [
                 'mediaId' => null,
@@ -48,7 +49,8 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
                 'deviceType' => null,
                 'operatingSystem' => null,
                 'browser' => null,
-                'tag' => null
+                'tag' => null,
+                'referrer' => 'uri'
             ],
             [
                 'mediaId' => 'mediaId',
@@ -58,7 +60,8 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
                 'deviceType' => 'deviceType',
                 'operatingSystem' => 'operatingSystem',
                 'browser' => 'browser',
-                'tag' => 'tag'
+                'tag' => 'tag',
+                'referrer' => 'referrer'
             ],
             [
                 'mediaId' => 'setMediaId',
@@ -68,7 +71,8 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
                 'deviceType' => 'setDeviceType',
                 'operatingSystem' => 'setOperatingSystem',
                 'browser' => 'setBrowser',
-                'tag' => 'setTag'
+                'tag' => 'setTag',
+                'referrer' => 'setReferrer'
             ],
             [
                 'mediaId' => 'getMediaId',
@@ -78,7 +82,8 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
                 'deviceType' => 'getDeviceType',
                 'operatingSystem' => 'getOperatingSystem',
                 'browser' => 'getBrowser',
-                'tag' => 'getTag'
+                'tag' => 'getTag',
+                'referrer' => 'getReferrer'
             ],
             [
                 'mediaId' => null,
@@ -88,7 +93,8 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
                 'deviceType' => null,
                 'operatingSystem' => null,
                 'browser' => null,
-                'tag' => null
+                'tag' => null,
+                'referrer' => null
             ],
             null
         );
@@ -158,6 +164,7 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
         $this->container['operatingSystem'] = $data['operatingSystem'] ?? null;
         $this->container['browser'] = $data['browser'] ?? null;
         $this->container['tag'] = $data['tag'] ?? null;
+        $this->container['referrer'] = $data['referrer'] ?? null;
     }
 
     /**
@@ -400,6 +407,30 @@ class FilterBy1 implements ModelInterface, \JsonSerializable
     public function setTag($tag)
     {
         $this->container['tag'] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets referrer
+     *
+     * @return string[]|null
+     */
+    public function getReferrer()
+    {
+        return $this->container['referrer'];
+    }
+
+    /**
+     * Sets referrer
+     *
+     * @param string[]|null $referrer Filters data based on the URL where the view is originating from. This filter parameter accepts an empty string to filter view events where no referrer is available.  - The API filters for exact matches. Include the trailing `/` characters if needed. - The URLs you add must be URL encoded.
+     *
+     * @return self
+     */
+    public function setReferrer($referrer)
+    {
+        $this->container['referrer'] = $referrer;
 
         return $this;
     }

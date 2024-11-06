@@ -155,7 +155,7 @@ class AnalyticsMetricsOverTimeResponse implements ModelInterface, \JsonSerializa
     /**
      * Sets data
      *
-     * @param \ApiVideo\Client\Model\AnalyticsMetricsOverTimeResponseData[] $data Returns an array of metrics and the timestamps .
+     * @param \ApiVideo\Client\Model\AnalyticsMetricsOverTimeResponseData[] $data Returns an array of metrics and the timestamps.
      *
      * @return self
      */

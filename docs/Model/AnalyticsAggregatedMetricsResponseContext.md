@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metric** | **string** | Returns the metric you selected. | [optional]
+**metric** | **string** | Returns the metric and relevant parameters you selected. | [optional]
 **aggregation** | **string** | Returns the aggregation you selected. | [optional]
 **timeframe** | [**\ApiVideo\Client\Model\AnalyticsAggregatedMetricsResponseContextTimeframe**](AnalyticsAggregatedMetricsResponseContextTimeframe.md) |  | [optional]
 

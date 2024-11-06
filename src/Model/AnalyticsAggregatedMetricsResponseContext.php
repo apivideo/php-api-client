@@ -70,6 +70,17 @@ class AnalyticsAggregatedMetricsResponseContext implements ModelInterface, \Json
     const METRIC_IMPRESSION = 'impression';
     const METRIC_IMPRESSION_TIME = 'impression-time';
     const METRIC_WATCH_TIME = 'watch-time';
+    const METRIC_CCV = 'ccv';
+    const METRIC_UNIQUE_CCV = 'unique-ccv';
+    const METRIC_VIEW_3 = 'view-3';
+    const METRIC_VIEW_5 = 'view-5';
+    const METRIC_VIEW_10 = 'view-10';
+    const METRIC_VIEW_30 = 'view-30';
+    const METRIC_UNIQUE_VIEW = 'unique-view';
+    const METRIC_UNIQUE_VIEW_3 = 'unique-view-3';
+    const METRIC_UNIQUE_VIEW_5 = 'unique-view-5';
+    const METRIC_UNIQUE_VIEW_10 = 'unique-view-10';
+    const METRIC_UNIQUE_VIEW_30 = 'unique-view-30';
     const AGGREGATION_COUNT = 'count';
     const AGGREGATION_RATE = 'rate';
     const AGGREGATION_TOTAL = 'total';
@@ -90,6 +101,17 @@ class AnalyticsAggregatedMetricsResponseContext implements ModelInterface, \Json
             self::METRIC_IMPRESSION,
             self::METRIC_IMPRESSION_TIME,
             self::METRIC_WATCH_TIME,
+            self::METRIC_CCV,
+            self::METRIC_UNIQUE_CCV,
+            self::METRIC_VIEW_3,
+            self::METRIC_VIEW_5,
+            self::METRIC_VIEW_10,
+            self::METRIC_VIEW_30,
+            self::METRIC_UNIQUE_VIEW,
+            self::METRIC_UNIQUE_VIEW_3,
+            self::METRIC_UNIQUE_VIEW_5,
+            self::METRIC_UNIQUE_VIEW_10,
+            self::METRIC_UNIQUE_VIEW_30,
         ];
     }
 
@@ -184,7 +206,7 @@ class AnalyticsAggregatedMetricsResponseContext implements ModelInterface, \Json
     /**
      * Sets metric
      *
-     * @param string|null $metric Returns the metric you selected.
+     * @param string|null $metric Returns the metric and relevant parameters you selected.
      *
      * @return self
      */
