@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.4.7] - 2024-11-06
+- AI summary updates
+
 ## [1.4.6] - 2024-11-04
 - Analytics updates (ccv, views, ...)
 

@@ -31,32 +31,26 @@ class SummaryUpdatePayload implements ModelInterface, \JsonSerializable
         return new ModelDefinition(
             'summary-update-payload',
             [
-                'title' => 'string',
                 'abstract' => 'string',
                 'takeaways' => 'string[]'
             ],
             [
-                'title' => null,
                 'abstract' => null,
                 'takeaways' => null
             ],
             [
-                'title' => 'title',
                 'abstract' => 'abstract',
                 'takeaways' => 'takeaways'
             ],
             [
-                'title' => 'setTitle',
                 'abstract' => 'setAbstract',
                 'takeaways' => 'setTakeaways'
             ],
             [
-                'title' => 'getTitle',
                 'abstract' => 'getAbstract',
                 'takeaways' => 'getTakeaways'
             ],
             [
-                'title' => null,
                 'abstract' => null,
                 'takeaways' => null
             ],
@@ -80,7 +74,6 @@ class SummaryUpdatePayload implements ModelInterface, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['title'] = $data['title'] ?? null;
         $this->container['abstract'] = $data['abstract'] ?? null;
         $this->container['takeaways'] = $data['takeaways'] ?? null;
     }
@@ -112,30 +105,6 @@ class SummaryUpdatePayload implements ModelInterface, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title A video title, based on the contents of the video.
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
 
     /**
      * Gets abstract

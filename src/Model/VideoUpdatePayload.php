@@ -41,7 +41,8 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
                 'metadata' => '\ApiVideo\Client\Model\Metadata[]',
                 'language' => 'string',
                 'transcript' => 'bool',
-                'transcriptSummary' => 'bool'
+                'transcriptSummary' => 'bool',
+                'transcriptSummaryAttributes' => 'string[]'
             ],
             [
                 'playerId' => null,
@@ -54,7 +55,8 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
                 'metadata' => null,
                 'language' => null,
                 'transcript' => null,
-                'transcriptSummary' => null
+                'transcriptSummary' => null,
+                'transcriptSummaryAttributes' => null
             ],
             [
                 'playerId' => 'playerId',
@@ -67,7 +69,8 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
                 'metadata' => 'metadata',
                 'language' => 'language',
                 'transcript' => 'transcript',
-                'transcriptSummary' => 'transcriptSummary'
+                'transcriptSummary' => 'transcriptSummary',
+                'transcriptSummaryAttributes' => 'transcriptSummaryAttributes'
             ],
             [
                 'playerId' => 'setPlayerId',
@@ -80,7 +83,8 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
                 'metadata' => 'setMetadata',
                 'language' => 'setLanguage',
                 'transcript' => 'setTranscript',
-                'transcriptSummary' => 'setTranscriptSummary'
+                'transcriptSummary' => 'setTranscriptSummary',
+                'transcriptSummaryAttributes' => 'setTranscriptSummaryAttributes'
             ],
             [
                 'playerId' => 'getPlayerId',
@@ -93,7 +97,8 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
                 'metadata' => 'getMetadata',
                 'language' => 'getLanguage',
                 'transcript' => 'getTranscript',
-                'transcriptSummary' => 'getTranscriptSummary'
+                'transcriptSummary' => 'getTranscriptSummary',
+                'transcriptSummaryAttributes' => 'getTranscriptSummaryAttributes'
             ],
             [
                 'playerId' => 'isPlayerIdDefined',
@@ -106,7 +111,8 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
                 'metadata' => null,
                 'language' => null,
                 'transcript' => null,
-                'transcriptSummary' => null
+                'transcriptSummary' => null,
+                'transcriptSummaryAttributes' => null
             ],
             null
         );
@@ -145,6 +151,8 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
     const LANGUAGE_UR = 'ur';
     const LANGUAGE_VI = 'vi';
     const LANGUAGE_ZH = 'zh';
+    const TRANSCRIPT_SUMMARY_ATTRIBUTES__ABSTRACT = 'abstract';
+    const TRANSCRIPT_SUMMARY_ATTRIBUTES_TAKEAWAYS = 'takeaways';
 
     /**
      * Gets allowable values of the enum
@@ -191,6 +199,19 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTranscriptSummaryAttributesAllowableValues()
+    {
+        return [
+            self::TRANSCRIPT_SUMMARY_ATTRIBUTES__ABSTRACT,
+            self::TRANSCRIPT_SUMMARY_ATTRIBUTES_TAKEAWAYS,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -216,6 +237,7 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
         $this->container['language'] = $data['language'] ?? null;
         $this->container['transcript'] = $data['transcript'] ?? null;
         $this->container['transcriptSummary'] = $data['transcriptSummary'] ?? null;
+        $this->container['transcriptSummaryAttributes'] = $data['transcriptSummaryAttributes'] ?? null;
     }
 
     /**
@@ -531,6 +553,39 @@ class VideoUpdatePayload implements ModelInterface, \JsonSerializable
     public function setTranscriptSummary($transcriptSummary)
     {
         $this->container['transcriptSummary'] = $transcriptSummary;
+
+        return $this;
+    }
+
+    /**
+     * Gets transcriptSummaryAttributes
+     *
+     * @return string[]|null
+     */
+    public function getTranscriptSummaryAttributes()
+    {
+        return $this->container['transcriptSummaryAttributes'];
+    }
+
+    /**
+     * Sets transcriptSummaryAttributes
+     *
+     * @param string[]|null $transcriptSummaryAttributes Use this parameter to define the elements of a summary that you want to generate. If you do not define this parameter, the API generates a full summary with all attributes.
+     *
+     * @return self
+     */
+    public function setTranscriptSummaryAttributes($transcriptSummaryAttributes)
+    {
+        $allowedValues = $this->getTranscriptSummaryAttributesAllowableValues();
+        if (!is_null($transcriptSummaryAttributes) && array_diff($transcriptSummaryAttributes, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'transcriptSummaryAttributes', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['transcriptSummaryAttributes'] = $transcriptSummaryAttributes;
 
         return $this;
     }

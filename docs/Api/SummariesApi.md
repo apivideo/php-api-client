@@ -15,7 +15,7 @@ Method | Description | HTTP request
 
 
 
-Generate a title, abstract, and key takeaways for a video.
+Generate an abstract and key takeaways for a video.
 
 ### Arguments
 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 
 
-Update details for a summary. Note that this operation is only allowed for summary objects where `sourceStatus` is `missing`.
+Update details for a summary.
 
 ### Arguments
 

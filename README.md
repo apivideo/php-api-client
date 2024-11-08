@@ -383,7 +383,7 @@ $ BASE_URI="" API_KEY="..." vendor/bin/phpunit
 ```
 
 
-## Have you gotten use from this API client?
+## Have you gotten use from this API client? 
 
 Please take a moment to leave a star on the client ⭐
 

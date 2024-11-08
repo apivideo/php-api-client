@@ -32,33 +32,41 @@ class SummaryCreationPayload implements ModelInterface, \JsonSerializable
             'summary-creation-payload',
             [
                 'videoId' => 'string',
-                'origin' => 'string'
+                'origin' => 'string',
+                'attributes' => 'string[]'
             ],
             [
                 'videoId' => null,
-                'origin' => null
+                'origin' => null,
+                'attributes' => null
             ],
             [
                 'videoId' => 'videoId',
-                'origin' => 'origin'
+                'origin' => 'origin',
+                'attributes' => 'attributes'
             ],
             [
                 'videoId' => 'setVideoId',
-                'origin' => 'setOrigin'
+                'origin' => 'setOrigin',
+                'attributes' => 'setAttributes'
             ],
             [
                 'videoId' => 'getVideoId',
-                'origin' => 'getOrigin'
+                'origin' => 'getOrigin',
+                'attributes' => 'getAttributes'
             ],
             [
                 'videoId' => null,
-                'origin' => null
+                'origin' => null,
+                'attributes' => null
             ],
             null
         );
     }
 
     const ORIGIN_AUTO = 'auto';
+    const ATTRIBUTES__ABSTRACT = 'abstract';
+    const ATTRIBUTES_TAKEAWAYS = 'takeaways';
 
     /**
      * Gets allowable values of the enum
@@ -69,6 +77,19 @@ class SummaryCreationPayload implements ModelInterface, \JsonSerializable
     {
         return [
             self::ORIGIN_AUTO,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAttributesAllowableValues()
+    {
+        return [
+            self::ATTRIBUTES__ABSTRACT,
+            self::ATTRIBUTES_TAKEAWAYS,
         ];
     }
 
@@ -89,6 +110,7 @@ class SummaryCreationPayload implements ModelInterface, \JsonSerializable
     {
         $this->container['videoId'] = $data['videoId'] ?? null;
         $this->container['origin'] = $data['origin'] ?? null;
+        $this->container['attributes'] = $data['attributes'] ?? null;
     }
 
     /**
@@ -181,6 +203,39 @@ class SummaryCreationPayload implements ModelInterface, \JsonSerializable
             );
         }
         $this->container['origin'] = $origin;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return string[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param string[]|null $attributes Use this parameter to define the elements of a summary that you want to generate. If you do not define this parameter, the API generates a full summary with all attributes.
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        $allowedValues = $this->getAttributesAllowableValues();
+        if (!is_null($attributes) && array_diff($attributes, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'attributes', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['attributes'] = $attributes;
 
         return $this;
     }
