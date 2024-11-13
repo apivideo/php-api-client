@@ -76,6 +76,29 @@ class Webhook implements ModelInterface, \JsonSerializable
         );
     }
 
+    const EVENTS_LIVE_STREAM_BROADCAST_STARTED = 'live-stream.broadcast.started';
+    const EVENTS_LIVE_STREAM_BROADCAST_ENDED = 'live-stream.broadcast.ended';
+    const EVENTS_VIDEO_SOURCE_RECORDED = 'video.source.recorded';
+    const EVENTS_VIDEO_ENCODING_QUALITY_COMPLETED = 'video.encoding.quality.completed';
+    const EVENTS_VIDEO_CAPTION_GENERATED = 'video.caption.generated';
+    const EVENTS_VIDEO_SUMMARY_GENERATED = 'video.summary.generated';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEventsAllowableValues()
+    {
+        return [
+            self::EVENTS_LIVE_STREAM_BROADCAST_STARTED,
+            self::EVENTS_LIVE_STREAM_BROADCAST_ENDED,
+            self::EVENTS_VIDEO_SOURCE_RECORDED,
+            self::EVENTS_VIDEO_ENCODING_QUALITY_COMPLETED,
+            self::EVENTS_VIDEO_CAPTION_GENERATED,
+            self::EVENTS_VIDEO_SUMMARY_GENERATED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -190,6 +213,15 @@ class Webhook implements ModelInterface, \JsonSerializable
      */
     public function setEvents($events)
     {
+        $allowedValues = $this->getEventsAllowableValues();
+        if (!is_null($events) && array_diff($events, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'events', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['events'] = $events;
 
         return $this;

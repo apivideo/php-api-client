@@ -58,6 +58,29 @@ class WebhooksCreationPayload implements ModelInterface, \JsonSerializable
         );
     }
 
+    const EVENTS_LIVE_STREAM_BROADCAST_STARTED = 'live-stream.broadcast.started';
+    const EVENTS_LIVE_STREAM_BROADCAST_ENDED = 'live-stream.broadcast.ended';
+    const EVENTS_VIDEO_SOURCE_RECORDED = 'video.source.recorded';
+    const EVENTS_VIDEO_ENCODING_QUALITY_COMPLETED = 'video.encoding.quality.completed';
+    const EVENTS_VIDEO_CAPTION_GENERATED = 'video.caption.generated';
+    const EVENTS_VIDEO_SUMMARY_GENERATED = 'video.summary.generated';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEventsAllowableValues()
+    {
+        return [
+            self::EVENTS_LIVE_STREAM_BROADCAST_STARTED,
+            self::EVENTS_LIVE_STREAM_BROADCAST_ENDED,
+            self::EVENTS_VIDEO_SOURCE_RECORDED,
+            self::EVENTS_VIDEO_ENCODING_QUALITY_COMPLETED,
+            self::EVENTS_VIDEO_CAPTION_GENERATED,
+            self::EVENTS_VIDEO_SUMMARY_GENERATED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -121,12 +144,21 @@ class WebhooksCreationPayload implements ModelInterface, \JsonSerializable
     /**
      * Sets events
      *
-     * @param string[] $events A list of the webhooks that you are subscribing to. There are Currently four webhook options: * ```video.encoding.quality.completed```  Occurs when a new video is uploaded into your account, it will be encoded into several different HLS and mp4 qualities. When each version is encoded, your webhook will get a notification.  It will look like ```{ \\\"type\\\": \\\"video.encoding.quality.completed\\\", \\\"emittedAt\\\": \\\"2021-01-29T16:46:25.217+01:00\\\", \\\"videoId\\\": \\\"viXXXXXXXX\\\", \\\"encoding\\\": \\\"hls\\\", \\\"quality\\\": \\\"720p\\\"} ```. This request says that the 720p HLS encoding was completed. * ```live-stream.broadcast.started```  When a live stream begins broadcasting, the broadcasting parameter changes from false to true, and this webhook fires. * ```live-stream.broadcast.ended```  This event fires when a live stream has finished broadcasting. * ```video.source.recorded```  Occurs when a live stream is recorded and submitted for encoding.
+     * @param string[] $events An array of webhook events that you want to subscribe to.
      *
      * @return self
      */
     public function setEvents($events)
     {
+        $allowedValues = $this->getEventsAllowableValues();
+        if (array_diff($events, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'events', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['events'] = $events;
 
         return $this;
