@@ -32,6 +32,7 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
             'video-creation-payload',
             [
                 'title' => 'string',
+                'subtitle' => 'string',
                 'description' => 'string',
                 'source' => 'string',
                 'public' => 'bool',
@@ -49,6 +50,7 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
             ],
             [
                 'title' => null,
+                'subtitle' => null,
                 'description' => null,
                 'source' => null,
                 'public' => null,
@@ -66,6 +68,7 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
             ],
             [
                 'title' => 'title',
+                'subtitle' => 'subtitle',
                 'description' => 'description',
                 'source' => 'source',
                 'public' => 'public',
@@ -83,6 +86,7 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
             ],
             [
                 'title' => 'setTitle',
+                'subtitle' => 'setSubtitle',
                 'description' => 'setDescription',
                 'source' => 'setSource',
                 'public' => 'setPublic',
@@ -100,6 +104,7 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
             ],
             [
                 'title' => 'getTitle',
+                'subtitle' => 'getSubtitle',
                 'description' => 'getDescription',
                 'source' => 'getSource',
                 'public' => 'getPublic',
@@ -117,6 +122,7 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
             ],
             [
                 'title' => null,
+                'subtitle' => null,
                 'description' => null,
                 'source' => null,
                 'public' => null,
@@ -245,6 +251,7 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['title'] = $data['title'] ?? null;
+        $this->container['subtitle'] = $data['subtitle'] ?? null;
         $this->container['description'] = $data['description'] ?? null;
         $this->container['source'] = $data['source'] ?? null;
         $this->container['public'] = $data['public'] ?? true;
@@ -317,6 +324,30 @@ class VideoCreationPayload implements ModelInterface, \JsonSerializable
     public function setTitle($title)
     {
         $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets subtitle
+     *
+     * @return string|null
+     */
+    public function getSubtitle()
+    {
+        return $this->container['subtitle'];
+    }
+
+    /**
+     * Sets subtitle
+     *
+     * @param string|null $subtitle A subtitle of your video.
+     *
+     * @return self
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->container['subtitle'] = $subtitle;
 
         return $this;
     }
